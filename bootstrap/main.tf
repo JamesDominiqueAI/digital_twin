@@ -1,34 +1,18 @@
-# This creates an IAM role that GitHub Actions can assume
-# Run this once, then you can remove the file
-
-variable "github_repository" {
-  description = "GitHub repository in format 'owner/repo'"
-  type        = string
-}
-
-# Note: aws_caller_identity.current is already defined in main.tf
-
-# GitHub OIDC Provider
-# Note: If this already exists in your account, you'll need to import it:
-# terraform import aws_iam_openid_connect_provider.github arn:aws:iam::ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com
 resource "aws_iam_openid_connect_provider" "github" {
   url = "https://token.actions.githubusercontent.com"
-  
+
   client_id_list = [
     "sts.amazonaws.com"
   ]
-  
-  # This thumbprint is from GitHub's documentation
-  # Verify current value at: https://github.blog/changelog/2023-06-27-github-actions-update-on-oidc-integration-with-aws/
+
   thumbprint_list = [
     "1b511abead59c6ce207077c0bf0e0043b1382612"
   ]
 }
 
-# IAM Role for GitHub Actions
 resource "aws_iam_role" "github_actions" {
-  name = "github-actions-twin-deploy"
-  
+  name = var.role_name
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -49,15 +33,14 @@ resource "aws_iam_role" "github_actions" {
       }
     ]
   })
-  
+
   tags = {
-    Name        = "GitHub Actions Deploy Role"
-    Repository  = var.github_repository
-    ManagedBy   = "terraform"
+    Name       = "GitHub Actions Deploy Role"
+    Repository = var.github_repository
+    ManagedBy  = "terraform"
   }
 }
 
-# Attach necessary policies
 resource "aws_iam_role_policy_attachment" "github_lambda" {
   policy_arn = "arn:aws:iam::aws:policy/AWSLambda_FullAccess"
   role       = aws_iam_role.github_actions.name
@@ -103,7 +86,6 @@ resource "aws_iam_role_policy_attachment" "github_route53" {
   role       = aws_iam_role.github_actions.name
 }
 
-# Custom policy for additional permissions
 resource "aws_iam_role_policy" "github_additional" {
   name = "github-actions-additional"
   role = aws_iam_role.github_actions.id
@@ -136,5 +118,3 @@ resource "aws_iam_role_policy" "github_additional" {
     ]
   })
 }
-
-
