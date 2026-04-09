@@ -39,3 +39,10 @@ Thumbs.db
 
 # AWS
 .aws/
+
+*.zip
+*.pdf
+.terraform/
+terraform.tfstate*
+node_modules/
+.env
