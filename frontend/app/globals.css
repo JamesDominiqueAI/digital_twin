@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
+:root {
+  --color-ink: #172033;
+  --color-paper: #f5f2ea;
+  --color-accent: #a66a3f;
+}
+
+html {
+  font-family: var(--font-body), sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(166, 106, 63, 0.14), transparent 34%),
+    linear-gradient(180deg, #fbfaf7 0%, var(--color-paper) 100%);
+  color: var(--color-ink);
+}
+
 /* Smooth scrolling animation keyframe */
 @keyframes bounce {
   0%,
