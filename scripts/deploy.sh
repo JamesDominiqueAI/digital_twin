@@ -2,7 +2,7 @@
 set -e
 
 ENVIRONMENT=${1:-dev}          # dev | test | prod
-PROJECT_NAME=${2:-twin}
+PROJECT_NAME=${2:-digital-twin}
 
 echo "🚀 Deploying ${PROJECT_NAME} to ${ENVIRONMENT}..."
 

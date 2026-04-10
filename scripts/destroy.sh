@@ -11,7 +11,7 @@ if [ $# -eq 0 ]; then
 fi
 
 ENVIRONMENT=$1
-PROJECT_NAME=${2:-twin}
+PROJECT_NAME=${2:-digital-twin}
 
 echo "🗑️ Preparing to destroy ${PROJECT_NAME}-${ENVIRONMENT} infrastructure..."
 
