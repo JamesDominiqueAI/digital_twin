@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 :root {
-  --color-ink: #172033;
-  --color-paper: #f5f2ea;
-  --color-accent: #a66a3f;
+  --color-ink: #10233f;
+  --color-paper: #edf6ff;
+  --color-accent: #2563eb;
 }
 
 html {
@@ -12,8 +12,8 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top, rgba(166, 106, 63, 0.14), transparent 34%),
-    linear-gradient(180deg, #fbfaf7 0%, var(--color-paper) 100%);
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.18), transparent 34%),
+    linear-gradient(180deg, #f8fbff 0%, var(--color-paper) 52%, #dbeafe 100%);
   color: var(--color-ink);
 }
 
