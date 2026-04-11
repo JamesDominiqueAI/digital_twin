@@ -46,3 +46,5 @@ Thumbs.db
 terraform.tfstate*
 node_modules/
 .env
+backend/lambda-package/
+backend/lambda-deployment.zip

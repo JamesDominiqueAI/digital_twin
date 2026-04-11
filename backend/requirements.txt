@@ -5,4 +5,4 @@ python-multipart
 boto3
 pypdf
 mangum
-boto3
+openai
