@@ -352,7 +352,3 @@ resource "aws_route53_record" "alias_www_ipv6" {
   }
 }
 
-import {
-  to = aws_lambda_permission.api_gw
-  id = "${aws_lambda_function.api.function_name}/AllowExecutionFromAPIGateway"
-}
